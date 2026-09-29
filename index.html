@@ -125,7 +125,7 @@ button:active{transform:scale(.97);}
 <!-- ================= 過去問タイプ ================= -->
 <section class="panel" id="types">
   <div class="card">
-    <p class="hint">教達検 第1回（R2・R3）の1次関数はこの<b>6タイプ</b>。「これが解ければOK」。各タイプの「次のステップ→」で解き方を1行ずつ確認しよう。</p>
+    <p class="hint">教達検 第1回（<b>R2・R3・R6・R7</b>）の1次関数を分析。出るのはこの<b>6タイプ</b>で「これが解ければOK」。各タイプの「次のステップ→」で解き方を1行ずつ確認しよう。<br><span style="color:#8dc63f;font-weight:800">緑ラベル</span>は近年（R6・R7）の実際の出題例。</p>
   </div>
 
   <!-- ① -->
@@ -140,11 +140,15 @@ button:active{transform:scale(.97);}
 
   <!-- ② -->
   <div class="card stepper" data-key="t2">
-    <h2><span class="tt">②</span> 変化の割合（増加量）</h2>
+    <h2><span class="tt">②</span> 変化の割合・代入</h2>
     <div class="exq">例（R3 大問7）：\(y=-3x+15\) で、x の増加量が 4 のとき、y の増加量を求めなさい。</div>
     <div class="step-line">変化の割合 ＝ 傾き ＝ \(-3\)（xが1増えるとyは3減る）</div>
     <div class="step-line">yの増加量 ＝ 傾き × xの増加量 ＝ \(-3\times 4\)</div>
     <div class="step-line"><b>yの増加量 \(=-12\)</b></div>
+    <div class="exq" style="border-left:3px solid #8dc63f"><span class="badge" style="font-size:10px">R7</span> 大問7-1：\(y=\dfrac{1}{3}x+10\) 上の点Pで、x座標が 9 のとき y座標を求めなさい。</div>
+    <div class="step-line">直線上の点 → x=9 を代入するだけ</div>
+    <div class="step-line">\(y=\dfrac{1}{3}\times 9+10=3+10\)</div>
+    <div class="step-line"><b>y座標 \(=13\)</b>（Pの座標は \((9,13)\)）</div>
     <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
   </div>
 
@@ -155,6 +159,10 @@ button:active{transform:scale(.97);}
     <div class="step-line">傾き \(a=\dfrac{5-0}{0-(-4)}=\dfrac{5}{4}\)</div>
     <div class="step-line">C は y 軸上の点なので、切片 \(b=5\)</div>
     <div class="step-line"><b>\(y=\dfrac{5}{4}x+5\)</b></div>
+    <div class="exq" style="border-left:3px solid #8dc63f"><span class="badge" style="font-size:10px">R6</span> 大問7-2：2点 \(A(-2,-12)\)・\(B(4,6)\) を通る直線の式を求めなさい。</div>
+    <div class="step-line">傾き \(a=\dfrac{6-(-12)}{4-(-2)}=\dfrac{18}{6}=3\)</div>
+    <div class="step-line">\(y=3x+b\) に \(B(4,6)\) を代入：\(6=3\times4+b\) → \(b=-6\)</div>
+    <div class="step-line"><b>\(y=3x-6\)</b></div>
     <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
   </div>
 
@@ -165,6 +173,10 @@ button:active{transform:scale(.97);}
     <div class="step-line">y が等しいので \(-3x+15=x-9\)</div>
     <div class="step-line">\(-4x=-24\) → \(x=6\)</div>
     <div class="step-line">\(y=6-9=-3\) → <b>\(C(6,-3)\)</b></div>
+    <div class="exq" style="border-left:3px solid #8dc63f"><span class="badge" style="font-size:10px">R7</span> 大問7-2：\(y=\dfrac{1}{3}x+10\) と \(y=-2x-4\) の交点 A を求めなさい。</div>
+    <div class="step-line">\(\dfrac{1}{3}x+10=-2x-4\)、分数を消すため両辺×3：\(x+30=-6x-12\)</div>
+    <div class="step-line">\(7x=-42\) → \(x=-6\)</div>
+    <div class="step-line">\(y=-2\times(-6)-4=8\) → <b>\(A(-6,8)\)</b></div>
     <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
   </div>
 
@@ -175,6 +187,9 @@ button:active{transform:scale(.97);}
     <div class="step-line">y 軸との交点 A：x=0 を代入 → \(y=15\) → \(A(0,15)\)</div>
     <div class="step-line">x 軸との交点 B：y=0 を代入 → \(0=-3x+15\)</div>
     <div class="step-line">\(3x=15\) → \(x=5\) → <b>\(B(5,0)\)</b></div>
+    <div class="exq" style="border-left:3px solid #8dc63f"><span class="badge" style="font-size:10px">R7</span> 大問7：\(y=-2x-4\) と x軸・y軸との交点 C・D を求めなさい。</div>
+    <div class="step-line">x 軸との交点 C：y=0 → \(0=-2x-4\) → \(x=-2\) → <b>\(C(-2,0)\)</b></div>
+    <div class="step-line">y 軸との交点 D：x=0 → \(y=-4\) → <b>\(D(0,-4)\)</b>（切片がそのままDのy座標）</div>
     <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
   </div>
 
@@ -186,7 +201,18 @@ button:active{transform:scale(.97);}
     <div class="step-line">上の円錐：底面半径5・高さ \(15\)、\(V_1=\dfrac13\pi\cdot5^2\cdot15\)</div>
     <div class="step-line">下の円錐：底面半径5・高さ \(9\)、\(V_2=\dfrac13\pi\cdot5^2\cdot9\)</div>
     <div class="step-line">合計 \(=\dfrac13\pi\cdot25\cdot(15+9)=\dfrac13\pi\cdot25\cdot24\) → <b>\(200\pi\ \text{cm}^3\)</b></div>
-    <div class="step-line hint">※ R2 大問7 は「△ABC と面積が等しい点 P」を問う面積タイプ（答 \(\frac{52}{5}\)）。座標→長さ→面積の流れは同じ。</div>
+    <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
+  </div>
+
+  <!-- ⑥b 面積・等積変形（R7） -->
+  <div class="card stepper" data-key="t6b">
+    <h2><span class="tt">⑥</span> 図形との融合（面積・等積変形）<span class="badge" style="font-size:10px;margin-left:6px">R7</span></h2>
+    <div class="exq">R7 大問7-3：\(B(0,10)\)・\(C(-2,0)\)・\(D(0,-4)\)。①\(y=\dfrac13x+10\) 上の点P(x座標は正)について、△BCD と △BCP の面積が等しいとき、2点 D・P を通る直線の式を求めなさい。</div>
+    <div class="step-line"><b>コツ＝等積変形</b>：△BCD と △BCP は底辺 BC が共通。面積が等しい ⟺ P は「D を通り BC に平行な直線」の上にある</div>
+    <div class="step-line">直線 BC の傾き \(=\dfrac{10-0}{0-(-2)}=5\)。D を通り BC に平行 → \(y=5x-4\)</div>
+    <div class="step-line">P は①との交点：\(\dfrac13x+10=5x-4\)、×3で \(x+30=15x-12\) → \(x=3\)（正でOK）、\(y=11\) → \(P(3,11)\)</div>
+    <div class="step-line">求める直線は D・P を通る \(y=5x-4\)（D自身を通る平行線がそのまま答え）→ <b>\(y=5x-4\)</b></div>
+    <div class="step-line hint">※ R2 大問7 も「△ABC と面積が等しい点 P」の面積タイプ（答 \(\frac{52}{5}\)）。座標→長さ→面積・等積変形の流れは共通。</div>
     <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
   </div>
 </section>
@@ -195,10 +221,11 @@ button:active{transform:scale(.97);}
 <section class="panel" id="quiz">
   <div class="card" id="quizStart">
     <h2><span class="badge y">実戦</span> 演習モードを選ぶ</h2>
-    <p class="hint">数値を入れかえた<b>オリジナル問題</b>を自動生成。全10問・1問30秒・連続正解でボーナス。</p>
+    <p class="hint">数値を入れかえた<b>オリジナル問題</b>を自動生成。全10問・1問2分・連続正解でボーナス。時間切れでも答えられます。</p>
     <div class="modechips" id="modeChips">
       <div class="chip active" data-m="mix">🔀 総合ミックス</div>
       <div class="chip" data-m="A">② 変化の割合</div>
+      <div class="chip" data-m="F">直線上の点（代入）</div>
       <div class="chip" data-m="B">傾き＋1点→式</div>
       <div class="chip" data-m="C">③ 2点→式</div>
       <div class="chip" data-m="D">④ 交点</div>
@@ -237,7 +264,7 @@ button:active{transform:scale(.97);}
   </div>
 </section>
 
-<div class="foot">1次関数マスター ｜ 教達検 第1回（R2・R3）の出題タイプを参考にした非公式のオリジナル練習問題です。<br>© KATEぷら</div>
+<div class="foot">1次関数マスター ｜ 教達検 第1回（R2・R3・R6・R7）の出題タイプを参考にした非公式のオリジナル練習問題です。<br>© KATEぷら</div>
 </main>
 
 <script>
@@ -370,8 +397,14 @@ const Q=(function(){
       correct:coordTex(m,n),options:shuffle(uniq(coordTex(m,n),[coordTex(n,m),coordTex(m,n+1),coordTex(-m,n),coordTex(m+1,n)])),
       sol:'yを消去：\\('+cx(String(a1))+addTerm(b1)+'='+cx(String(a2))+addTerm(b2)+'\\) → \\(x='+m+'\\)、\\(y='+n+'\\)。答 \\('+coordTex(m,n)+'\\)'};}
 
-  const map={A:genA,B:genB,C:genC,D:genD,E:genE};
-  const all=[genA,genB,genC,genD,genE];
+  function genF(){const k=ri(2,4);const t=ri(-3,6);const b=ri(-6,12);const x=k*t;const y=t+b; // 分数傾きの直線上の点（R7型・代入）
+    return{type:'② 直線上の点（代入）',
+      q:'直線 \\(y='+fracTex(1,k)+'x'+addTerm(b)+'\\) 上で、x座標が '+x+' のときの y座標を求めなさい。',
+      correct:String(y),options:shuffle(uniq(String(y),[String(x+b),String(t),String(y+k),String(y-1)])),
+      sol:'x='+x+' を代入：\\(y=\\dfrac{1}{'+k+'}\\times'+x+addTerm(b)+'='+t+addTerm(b)+'='+y+'\\)（'+x+'÷'+k+'='+t+'）'};}
+
+  const map={A:genA,B:genB,C:genC,D:genD,E:genE,F:genF};
+  const all=[genA,genB,genC,genD,genE,genF];
   return {make(mode){ if(mode==='mix'){return all[Math.floor(Math.random()*all.length)]();} return map[mode](); }};
 })();
 
