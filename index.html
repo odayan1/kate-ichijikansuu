@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1次関数マスター｜KATEぷら</title>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<style>
+:root{--sky:#2fbdea;--green:#8dc63f;--yellow:#f7d000;--ink:#243447;--paper:#f4fbfe;--line:#d8e6ef;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:var(--ink);background:var(--paper);line-height:1.7;}
+header{background:linear-gradient(120deg,var(--sky),#28a3cc);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.logo{width:40px;height:40px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--sky);font-size:20px;flex:0 0 auto;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+header h1{font-size:19px;margin:0;line-height:1.2;}
+header .sub{font-size:11px;opacity:.9;margin-top:2px;}
+.tabs{display:flex;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;}
+.tab{flex:1;padding:12px 4px;text-align:center;font-weight:700;font-size:14px;color:#7d93a5;cursor:pointer;border-bottom:3px solid transparent;transition:.15s;}
+.tab.active{color:var(--sky);border-bottom-color:var(--sky);background:#f0fafe;}
+main{max-width:640px;margin:0 auto;padding:16px;}
+.panel{display:none;}
+.panel.active{display:block;animation:fade .25s;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px;box-shadow:0 1px 4px rgba(20,60,90,.05);}
+.card h2{margin:0 0 10px;font-size:16px;display:flex;align-items:center;gap:8px;}
+.card h3{margin:14px 0 6px;font-size:14px;color:#3b5266;}
+.badge{display:inline-block;background:var(--green);color:#fff;font-size:11px;font-weight:800;padding:2px 9px;border-radius:20px;}
+.badge.y{background:var(--yellow);color:#5a4a00;}
+.badge.s{background:var(--sky);}
+.hint{font-size:13px;color:#5f7385;}
+.svgwrap{display:flex;justify-content:center;}
+svg{max-width:100%;height:auto;touch-action:none;}
+.sliderrow{display:flex;align-items:center;gap:10px;margin:10px 0;}
+.sliderrow label{font-weight:800;width:82px;font-size:13px;}
+.sliderrow input[type=range]{flex:1;accent-color:var(--sky);}
+.val{font-weight:900;min-width:42px;text-align:right;font-variant-numeric:tabular-nums;}
+.eqbox{background:#eef8fd;border:1px dashed var(--sky);border-radius:10px;padding:10px 12px;text-align:center;font-size:17px;margin:8px 0;}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;margin-top:6px;}
+.legend span{display:inline-flex;align-items:center;gap:5px;}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block;}
+.stepper .step-line{max-height:0;overflow:hidden;opacity:0;transition:max-height .3s,opacity .3s;background:#f7fbfd;border-left:3px solid var(--sky);padding:0 12px;margin:6px 0;border-radius:0 8px 8px 0;}
+.stepper .step-line.show{max-height:220px;opacity:1;padding:9px 12px;}
+.step-btns{display:flex;gap:8px;margin-top:10px;}
+button{font-family:inherit;cursor:pointer;border:none;border-radius:10px;font-weight:800;transition:.12s;}
+button:active{transform:scale(.97);}
+.btn{background:var(--sky);color:#fff;padding:10px 16px;font-size:14px;}
+.btn.ghost{background:#eaf4fa;color:var(--sky);}
+.btn.green{background:var(--green);}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.qhead{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#5f7385;margin-bottom:8px;}
+.dots{display:flex;gap:5px;flex-wrap:wrap;}
+.pdot{width:10px;height:10px;border-radius:50%;background:#dbe7ef;}
+.pdot.ok{background:var(--green);}.pdot.ng{background:#ff8080;}.pdot.now{background:var(--yellow);box-shadow:0 0 0 3px #fdf3bf;}
+.timerbar{height:6px;background:#e6eef4;border-radius:6px;overflow:hidden;margin:6px 0 14px;}
+.timerbar>div{height:100%;background:var(--sky);width:100%;transition:width .2s linear;}
+.qtext{font-size:17px;text-align:center;margin:6px 0 16px;min-height:30px;}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.opt{background:#f2f8fc;border:2px solid #e0edf5;border-radius:12px;padding:16px 8px;text-align:center;font-size:16px;min-height:56px;display:flex;align-items:center;justify-content:center;}
+.opt.correct{background:#e7f7d5;border-color:var(--green);}
+.opt.wrong{background:#ffe6e6;border-color:#ff8080;}
+.opt.dim{opacity:.45;}
+.fb{text-align:center;font-weight:800;margin:12px 0;min-height:24px;}
+.fb.ok{color:#5aa300;}.fb.ng{color:#e05555;}
+.solbox{background:#fffdf0;border:1px solid var(--yellow);border-radius:10px;padding:10px 14px;font-size:14px;margin-top:8px;display:none;}
+.solbox.show{display:block;}
+.scorebar{display:flex;justify-content:space-around;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:14px;text-align:center;}
+.scorebar b{display:block;font-size:20px;color:var(--sky);}
+.scorebar small{font-size:11px;color:#7d93a5;}
+.result{text-align:center;padding:10px;}
+.result .big{font-size:52px;font-weight:900;color:var(--sky);}
+.rank{font-size:34px;margin:6px 0;}
+.modechips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.chip{padding:7px 13px;border-radius:20px;background:#eaf4fa;color:#4a6274;font-size:13px;font-weight:700;cursor:pointer;border:2px solid transparent;}
+.chip.active{background:var(--sky);color:#fff;}
+.tt{font-size:12px;background:var(--sky);color:#fff;border-radius:6px;padding:1px 7px;font-weight:800;margin-right:4px;}
+.exq{background:#eef8fd;border-radius:8px;padding:8px 12px;font-size:14px;margin:4px 0 8px;}
+.foot{text-align:center;font-size:11px;color:#9db0be;padding:20px 0;}
+.confetti{position:fixed;top:-10px;width:9px;height:14px;z-index:99;pointer-events:none;}
+@media(max-width:520px){.opts{grid-template-columns:1fr;}header h1{font-size:16px;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">1次</div>
+  <div><h1>1次関数マスター</h1><div class="sub">教達検 第1回 対策 ／ つまずきを、プラスに。KATEぷら</div></div>
+</header>
+<div class="tabs">
+  <div class="tab active" data-p="learn">① 学習</div>
+  <div class="tab" data-p="types">② 過去問タイプ</div>
+  <div class="tab" data-p="quiz">③ 演習</div>
+</div>
+<main>
+
+<!-- ================= 学習 ================= -->
+<section class="panel active" id="learn">
+  <div class="card">
+    <h2><span class="badge s">動かす</span> 直線 <span>\(y=ax+b\)</span> を自分で動かそう</h2>
+    <p class="hint"><b>a</b> と <b>b</b> は「定数（決まった数）」、<b>x</b>・<b>y</b> は「変数（グラフ上の点）」。スライダーで a・b を変えると直線が動きます。</p>
+    <div class="svgwrap"><svg id="graph" viewBox="0 0 360 360" width="360" height="360"></svg></div>
+    <div class="eqbox" id="eqLive">\(y=x\)</div>
+    <div class="sliderrow"><label>傾き a</label><input type="range" id="slA" min="-4" max="4" step="0.5" value="1"><span class="val" id="vA">1</span></div>
+    <div class="sliderrow"><label>切片 b</label><input type="range" id="slB" min="-6" max="6" step="1" value="0"><span class="val" id="vB">0</span></div>
+    <div class="legend">
+      <span><i class="dot" style="background:#2fbdea"></i>直線 y=ax+b</span>
+      <span><i class="dot" style="background:#e0447a"></i>切片 b（x=0 のときの y）</span>
+      <span><i class="dot" style="background:#8dc63f"></i>傾き（xが1増→yがa増）</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">要点</span> ここだけは押さえる</h2>
+    <h3>傾き a ＝ 変化の割合</h3>
+    <p class="hint">\(a=\dfrac{y\text{の増加量}}{x\text{の増加量}}=\dfrac{\Delta y}{\Delta x}\)。「x が 1 増えると y が a 増える」。だから <b>yの増加量 = a × xの増加量</b>。上のグラフで緑の三角形（Δx=1, Δy=a）を見よう。</p>
+    <h3>切片 b</h3>
+    <p class="hint">b は <b>x=0 のときの y の値</b>。グラフが y 軸と交わる点（ピンクの点）。</p>
+    <h3>2点あれば直線は決まる</h3>
+    <p class="hint">通る2点が分かれば、①傾き \(a=\dfrac{y_2-y_1}{x_2-x_1}\) を出す → ②どちらかの点を代入して b を求める、の順で式が作れる。</p>
+    <h3>\(ax+by=c\) の形は「y＝」に直す</h3>
+    <p class="hint">\(2x+3y=6\) → \(3y=-2x+6\) → \(y=-\dfrac{2}{3}x+2\)。こうして初めて傾き（\(-\frac23\)）と切片（2）が読める。</p>
+  </div>
+</section>
+
+<!-- ================= 過去問タイプ ================= -->
+<section class="panel" id="types">
+  <div class="card">
+    <p class="hint">教達検 第1回（R2・R3）の1次関数はこの<b>6タイプ</b>。「これが解ければOK」。各タイプの「次のステップ→」で解き方を1行ずつ確認しよう。</p>
+  </div>
+
+  <!-- ① -->
+  <div class="card stepper" data-key="t1">
+    <h2><span class="tt">①</span> 式から傾きを求める</h2>
+    <div class="exq">例（R3 大問2）：\(2x+3y=6\) のグラフの傾きを求めなさい。</div>
+    <div class="step-line">まず y について解く：\(3y=-2x+6\)</div>
+    <div class="step-line">両辺を 3 でわる：\(y=-\dfrac{2}{3}x+2\)</div>
+    <div class="step-line">\(y=ax+b\) の a が傾き → <b>傾き \(=-\dfrac{2}{3}\)</b></div>
+    <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
+  </div>
+
+  <!-- ② -->
+  <div class="card stepper" data-key="t2">
+    <h2><span class="tt">②</span> 変化の割合（増加量）</h2>
+    <div class="exq">例（R3 大問7）：\(y=-3x+15\) で、x の増加量が 4 のとき、y の増加量を求めなさい。</div>
+    <div class="step-line">変化の割合 ＝ 傾き ＝ \(-3\)（xが1増えるとyは3減る）</div>
+    <div class="step-line">yの増加量 ＝ 傾き × xの増加量 ＝ \(-3\times 4\)</div>
+    <div class="step-line"><b>yの増加量 \(=-12\)</b></div>
+    <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
+  </div>
+
+  <!-- ③ -->
+  <div class="card stepper" data-key="t3">
+    <h2><span class="tt">③</span> 2点（条件）から式を求める</h2>
+    <div class="exq">例（R2 大問7 改）：2点 \(B(-4,0)\)・\(C(0,5)\) を通る直線の式を求めなさい。</div>
+    <div class="step-line">傾き \(a=\dfrac{5-0}{0-(-4)}=\dfrac{5}{4}\)</div>
+    <div class="step-line">C は y 軸上の点なので、切片 \(b=5\)</div>
+    <div class="step-line"><b>\(y=\dfrac{5}{4}x+5\)</b></div>
+    <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
+  </div>
+
+  <!-- ④ -->
+  <div class="card stepper" data-key="t4">
+    <h2><span class="tt">④</span> 2直線の交点（連立）</h2>
+    <div class="exq">例（R3 大問7）：\(y=-3x+15\) と \(y=x-9\) の交点 C を求めなさい。</div>
+    <div class="step-line">y が等しいので \(-3x+15=x-9\)</div>
+    <div class="step-line">\(-4x=-24\) → \(x=6\)</div>
+    <div class="step-line">\(y=6-9=-3\) → <b>\(C(6,-3)\)</b></div>
+    <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
+  </div>
+
+  <!-- ⑤ -->
+  <div class="card stepper" data-key="t5">
+    <h2><span class="tt">⑤</span> 軸との交点（切片・x切片）</h2>
+    <div class="exq">例（R3 大問7）：\(y=-3x+15\) と x 軸・y 軸との交点 A・B を求めなさい。</div>
+    <div class="step-line">y 軸との交点 A：x=0 を代入 → \(y=15\) → \(A(0,15)\)</div>
+    <div class="step-line">x 軸との交点 B：y=0 を代入 → \(0=-3x+15\)</div>
+    <div class="step-line">\(3x=15\) → \(x=5\) → <b>\(B(5,0)\)</b></div>
+    <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
+  </div>
+
+  <!-- ⑥ -->
+  <div class="card stepper" data-key="t6">
+    <h2><span class="tt">⑥</span> 図形との融合（面積・回転体）</h2>
+    <div class="exq">例（R3 大問7）：\(A(0,15)\)・\(B(5,0)\)・\(D(0,-9)\) の △ABD を y 軸のまわりに1回転させた立体の体積を求めなさい。</div>
+    <div class="step-line">A・D は y 軸上、B だけ軸から水平に 5 離れている → 回転で<b>半径 5</b>の円ができる</div>
+    <div class="step-line">上の円錐：底面半径5・高さ \(15\)、\(V_1=\dfrac13\pi\cdot5^2\cdot15\)</div>
+    <div class="step-line">下の円錐：底面半径5・高さ \(9\)、\(V_2=\dfrac13\pi\cdot5^2\cdot9\)</div>
+    <div class="step-line">合計 \(=\dfrac13\pi\cdot25\cdot(15+9)=\dfrac13\pi\cdot25\cdot24\) → <b>\(200\pi\ \text{cm}^3\)</b></div>
+    <div class="step-line hint">※ R2 大問7 は「△ABC と面積が等しい点 P」を問う面積タイプ（答 \(\frac{52}{5}\)）。座標→長さ→面積の流れは同じ。</div>
+    <div class="step-btns"><button class="btn next">次のステップ→</button><button class="btn ghost reset">はじめから</button></div>
+  </div>
+</section>
+
+<!-- ================= 演習 ================= -->
+<section class="panel" id="quiz">
+  <div class="card" id="quizStart">
+    <h2><span class="badge y">実戦</span> 演習モードを選ぶ</h2>
+    <p class="hint">数値を入れかえた<b>オリジナル問題</b>を自動生成。全10問・1問30秒・連続正解でボーナス。</p>
+    <div class="modechips" id="modeChips">
+      <div class="chip active" data-m="mix">🔀 総合ミックス</div>
+      <div class="chip" data-m="A">② 変化の割合</div>
+      <div class="chip" data-m="B">傾き＋1点→式</div>
+      <div class="chip" data-m="C">③ 2点→式</div>
+      <div class="chip" data-m="D">④ 交点</div>
+      <div class="chip" data-m="E">① 式→傾き</div>
+    </div>
+    <button class="btn green" id="startBtn" style="width:100%;padding:14px;font-size:16px;">スタート ▶</button>
+  </div>
+
+  <div id="quizPlay" style="display:none;">
+    <div class="scorebar">
+      <div><b id="sScore">0</b><small>ポイント</small></div>
+      <div><b id="sStreak">0</b><small>連続正解</small></div>
+      <div><b id="sNum">1/10</b><small>問題</small></div>
+    </div>
+    <div class="card">
+      <div class="qhead"><span id="qType">—</span><span id="qTimer">30</span></div>
+      <div class="timerbar"><div id="timerFill"></div></div>
+      <div class="qtext" id="qText"></div>
+      <div class="opts" id="opts"></div>
+      <div class="fb" id="fb"></div>
+      <div class="solbox" id="sol"></div>
+      <button class="btn" id="nextBtn" style="width:100%;display:none;margin-top:12px;">次の問題 →</button>
+    </div>
+  </div>
+
+  <div id="quizResult" style="display:none;">
+    <div class="card result">
+      <div class="rank" id="rRank"></div>
+      <div class="big"><span id="rScore">0</span></div>
+      <div class="hint">ポイント</div>
+      <p id="rMsg" style="font-weight:800;margin:12px 0;"></p>
+      <div class="hint" id="rDetail"></div>
+      <button class="btn green" id="againBtn" style="width:100%;padding:13px;margin-top:14px;">もう一度</button>
+      <button class="btn ghost" id="backBtn" style="width:100%;padding:11px;margin-top:8px;">モード選択にもどる</button>
+    </div>
+  </div>
+</section>
+
+<div class="foot">1次関数マスター ｜ 教達検 第1回（R2・R3）の出題タイプを参考にした非公式のオリジナル練習問題です。<br>© KATEぷら</div>
+</main>
+
+<script>
+/* ---------- タブ ---------- */
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.p).classList.add('active');
+  });
+});
+
+/* ---------- MathJax 再描画ヘルパ ---------- */
+function typeset(el){ if(window.MathJax&&MathJax.typesetPromise){ MathJax.typesetPromise(el?[el]:undefined).catch(()=>{}); } }
+
+/* ---------- 学習タブ：グラフ ---------- */
+(function(){
+  const svg=document.getElementById('graph');
+  const NS='http://www.w3.org/2000/svg';
+  const O=180, U=15, MIN=-11, MAX=11;           // 原点px, 1目盛px
+  const X=x=>O+x*U, Y=y=>O-y*U;
+  function line(x1,y1,x2,y2,stroke,w,dash){const l=document.createElementNS(NS,'line');l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);l.setAttribute('stroke',stroke);l.setAttribute('stroke-width',w||1);if(dash)l.setAttribute('stroke-dasharray',dash);svg.appendChild(l);return l;}
+  function circ(cx,cy,r,fill){const c=document.createElementNS(NS,'circle');c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',r);c.setAttribute('fill',fill);svg.appendChild(c);return c;}
+  function txt(x,y,s,fill,size,anchor){const t=document.createElementNS(NS,'text');t.setAttribute('x',x);t.setAttribute('y',y);t.setAttribute('fill',fill);t.setAttribute('font-size',size||11);t.setAttribute('text-anchor',anchor||'middle');t.setAttribute('font-family','sans-serif');t.textContent=s;svg.appendChild(t);return t;}
+  function draw(a,b){
+    svg.innerHTML='';
+    // グリッド
+    for(let i=MIN;i<=MAX;i++){
+      line(X(i),Y(MIN),X(i),Y(MAX),'#eef4f8',1);
+      line(X(MIN),Y(i),X(MAX),Y(i),'#eef4f8',1);
+    }
+    // 軸
+    line(X(MIN),Y(0),X(MAX),Y(0),'#9db0be',1.5);
+    line(X(0),Y(MIN),X(0),Y(MAX),'#9db0be',1.5);
+    txt(X(MAX)-4,Y(0)+13,'x','#7d93a5',12);txt(X(0)+11,Y(MAX)+10,'y','#7d93a5',12);
+    txt(X(0)-7,Y(0)+13,'O','#7d93a5',11);
+    // 直線 y=ax+b （画面内でクリップ）
+    const xs=MIN, xe=MAX;
+    line(X(xs),Y(a*xs+b),X(xe),Y(a*xe+b),'#2fbdea',3);
+    // 傾きの三角形（x=0→1）
+    const bx0=X(0),by0=Y(b),bx1=X(1),by1=Y(b),by2=Y(a+b);
+    if(Math.abs(b)<=MAX){
+      line(bx0,by0,bx1,by1,'#8dc63f',2.5);                 // Δx=1
+      line(bx1,by1,bx1,by2,'#8dc63f',2.5);                 // Δy=a
+      txt((bx0+bx1)/2,by0+13,'Δx=1','#5aa300',10);
+      txt(bx1+2,(by1+by2)/2+3,'Δy='+a,'#5aa300',10,'start');
+    }
+    // 切片
+    if(Math.abs(b)<=MAX){ circ(X(0),Y(b),5,'#e0447a'); txt(X(0)-9,Y(b)-7,'b='+b,'#e0447a',11,'end'); }
+    // x切片
+    if(a!==0){ const xi=-b/a; if(Math.abs(xi)<=MAX){ circ(X(xi),Y(0),4,'#f7a600'); } }
+  }
+  const slA=document.getElementById('slA'),slB=document.getElementById('slB');
+  const vA=document.getElementById('vA'),vB=document.getElementById('vB'),eq=document.getElementById('eqLive');
+  function fmtSlope(a){ if(a===0)return '0'; if(a===1)return 'x'; if(a===-1)return '-x'; if(Number.isInteger(a))return a+'x'; return a+'x'; }
+  function update(){
+    const a=parseFloat(slA.value),b=parseFloat(slB.value);
+    vA.textContent=a; vB.textContent=b;
+    let s='y='; s+=fmtSlope(a);
+    if(a===0)s='y=';
+    if(b>0)s+='+'+b; else if(b<0)s+=b; if(a===0&&b>=0)s='y='+b; if(a===0&&b<0)s='y='+b;
+    eq.textContent='\\('+s+'\\)'; typeset(eq);
+    draw(a,b);
+  }
+  slA.addEventListener('input',update); slB.addEventListener('input',update);
+  update();
+})();
+
+/* ---------- 過去問タイプ：ステッパー（共有状態で管理） ---------- */
+(function(){
+  const state={};
+  document.querySelectorAll('.stepper').forEach(card=>{
+    const key=card.dataset.key;
+    const lines=card.querySelectorAll('.step-line');
+    state[key]=0;
+    const render=()=>{ lines.forEach((l,i)=>l.classList.toggle('show',i<state[key])); typeset(card); };
+    card.querySelector('.next').addEventListener('click',()=>{ if(state[key]<lines.length){state[key]++;render();} });
+    card.querySelector('.reset').addEventListener('click',()=>{ state[key]=0; render(); });
+  });
+})();
+
+/* ---------- 演習：問題生成（Nodeで20万回検証済みロジック） ---------- */
+const Q=(function(){
+  function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b];}return a||1;}
+  function ri(mn,mx){return Math.floor(Math.random()*(mx-mn+1))+mn;}
+  function rnz(mn,mx){let v;do{v=ri(mn,mx);}while(v===0);return v;}
+  function reduce(n,d){if(d<0){n=-n;d=-d;}const g=gcd(n,d);return{n:n/g,d:d/g};}
+  function fracTex(n,d){const r=reduce(n,d);if(r.d===1)return String(r.n);if(r.n<0)return '-\\frac{'+(-r.n)+'}{'+r.d+'}';return '\\frac{'+r.n+'}{'+r.d+'}';}
+  function eqTex(an,ad,b){const a=reduce(an,ad);let s='y=';
+    if(a.n===0)s+='0';
+    else if(a.d===1){s+=(a.n===1?'x':a.n===-1?'-x':a.n+'x');}
+    else s+=(a.n<0?'-\\frac{'+(-a.n)+'}{'+a.d+'}x':'\\frac{'+a.n+'}{'+a.d+'}x');
+    if(b>0)s+='+'+b;else if(b<0)s+=b;return s;}
+  function coordTex(x,y){return '('+x+',\\ '+y+')';}
+  // 係数×x を整形（1→x, -1→-x, それ以外→係数x）。tは整数 or 分数tex文字列
+  function cx(t){ if(t==='1')return 'x'; if(t==='-1')return '-x'; return t+'x'; }
+  // 加える項の符号処理（0→省略, 正→+付き, 負→そのまま）
+  function addTerm(t){ if(t==='0'||t===0)return ''; t=String(t); return (t[0]==='-'? t : '+'+t); }
+  function norm(s){return s.replace(/\s+/g,'');}
+  function uniq(correct,dis){const out=[correct];for(const d of dis){if(!out.some(o=>norm(o)===norm(d)))out.push(d);if(out.length===4)break;}let k=2;while(out.length<4){const c=(/^\(/.test(correct))?coordTex(90+k,k):String(120+k);if(!out.some(o=>norm(o)===norm(c)))out.push(c);k++;}return out;}
+  function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+  function genA(){const a=rnz(-5,5),b=ri(-6,6),dx=ri(2,5),dy=a*dx;
+    return{type:'② 変化の割合',
+      q:'関数 \\(y='+eqTex(a,1,b).slice(2)+'\\) で、\\(x\\) の増加量が '+dx+' のとき、\\(y\\) の増加量を求めなさい。',
+      correct:String(dy),options:shuffle(uniq(String(dy),[String(a+dx),String(-dy),String(dx),String(a)])),
+      sol:'変化の割合＝傾き＝\\('+a+'\\)。yの増加量＝傾き×xの増加量＝\\('+a+'\\times'+dx+'='+dy+'\\)'};}
+  function genE(){const a=rnz(1,6),b=rnz(1,6),c=ri(-9,9);
+    const ax=(a===1?'x':a+'x'), by=(b===1?'y':b+'y');   // 係数1は省略
+    const slopeT=fracTex(-a,b), interT=fracTex(c,b);
+    const leftMove='-'+(a===1?'x':a+'x');               // by=-ax+c の右辺先頭
+    return{type:'① 式→傾き',
+      q:'方程式 \\('+ax+'+'+by+'='+c+'\\) のグラフの傾きを求めなさい。',
+      correct:slopeT,options:shuffle(uniq(slopeT,[fracTex(a,b),fracTex(-b,a),fracTex(b,a),fracTex(-a,-b)])),
+      sol:'\\('+by+'='+leftMove+addTerm(c)+'\\) → \\(y='+cx(slopeT)+addTerm(interT)+'\\)。傾きは \\('+slopeT+'\\)'};}
+  function genB(){const a=rnz(-4,4),p=ri(-4,4),b=ri(-5,5),q=a*p+b;
+    return{type:'傾き＋1点→式',
+      q:'傾きが \\('+a+'\\) で、点 \\('+p+','+q+'\\) を通る直線の式を求めなさい。',
+      correct:eqTex(a,1,b),options:shuffle(uniq(eqTex(a,1,b),[eqTex(a,1,q),eqTex(a,1,-b),eqTex(-a,1,b),eqTex(a,1,b+1)])),
+      sol:'\\(y='+cx(String(a))+'+b\\) に \\(('+p+','+q+')\\) を代入：\\('+q+'='+(a)+'\\times('+p+')+b\\) → \\(b='+b+'\\)。答 \\('+eqTex(a,1,b)+'\\)'};}
+  function genC(){const a=rnz(-3,3),b=ri(-5,5);let x1=ri(-4,4),x2=ri(-4,4);while(x2===x1)x2=ri(-4,4);const y1=a*x1+b,y2=a*x2+b;
+    return{type:'③ 2点→式',
+      q:'2点 \\('+x1+','+y1+'\\)、\\('+x2+','+y2+'\\) を通る直線の式を求めなさい。',
+      correct:eqTex(a,1,b),options:shuffle(uniq(eqTex(a,1,b),[eqTex(-a,1,b),eqTex(a,1,-b),eqTex(a,1,b+1),eqTex(b,1,a)])),
+      sol:'傾き \\(a=\\dfrac{'+y2+'-('+y1+')}{'+x2+'-('+x1+')}='+a+'\\)。1点を代入して \\(b='+b+'\\)。答 \\('+eqTex(a,1,b)+'\\)'};}
+  function genD(){const m=ri(-4,4),n=ri(-4,4);let a1=rnz(-3,3),a2=rnz(-3,3);while(a2===a1)a2=rnz(-3,3);const b1=n-a1*m,b2=n-a2*m;
+    return{type:'④ 2直線の交点',
+      q:'2直線 \\('+eqTex(a1,1,b1)+'\\) と \\('+eqTex(a2,1,b2)+'\\) の交点の座標を求めなさい。',
+      correct:coordTex(m,n),options:shuffle(uniq(coordTex(m,n),[coordTex(n,m),coordTex(m,n+1),coordTex(-m,n),coordTex(m+1,n)])),
+      sol:'yを消去：\\('+cx(String(a1))+addTerm(b1)+'='+cx(String(a2))+addTerm(b2)+'\\) → \\(x='+m+'\\)、\\(y='+n+'\\)。答 \\('+coordTex(m,n)+'\\)'};}
+
+  const map={A:genA,B:genB,C:genC,D:genD,E:genE};
+  const all=[genA,genB,genC,genD,genE];
+  return {make(mode){ if(mode==='mix'){return all[Math.floor(Math.random()*all.length)]();} return map[mode](); }};
+})();
+
+/* ---------- 演習：進行制御 ---------- */
+(function(){
+  const TOTAL=10, PER=120;
+  let mode='mix',idx=0,score=0,streak=0,ok=0,cur=null,timer=null,left=PER,locked=false,timedOut=false;
+  const fmtTime=s=>{s=Math.max(s,0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+  const $=id=>document.getElementById(id);
+  const startEl=$('quizStart'),playEl=$('quizPlay'),resEl=$('quizResult');
+
+  $('modeChips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');mode=c.dataset.m;});
+  $('startBtn').addEventListener('click',start);
+  $('nextBtn').addEventListener('click',next);
+  $('againBtn').addEventListener('click',start);
+  $('backBtn').addEventListener('click',()=>{resEl.style.display='none';startEl.style.display='block';});
+
+  function start(){idx=0;score=0;streak=0;ok=0;startEl.style.display='none';resEl.style.display='none';playEl.style.display='block';next();}
+
+  function next(){
+    if(idx>=TOTAL){return finish();}
+    locked=false;timedOut=false;cur=Q.make(mode);
+    $('sNum').textContent=(idx+1)+'/'+TOTAL;
+    $('qType').textContent=cur.type;
+    $('qText').innerHTML='\\('+'\\)'; $('qText').innerHTML=cur.q;
+    $('fb').textContent='';$('fb').className='fb';
+    $('sol').className='solbox';$('sol').innerHTML=cur.sol;
+    $('nextBtn').style.display='none';
+    // 選択肢
+    const box=$('opts');box.innerHTML='';
+    cur.options.forEach(op=>{const d=document.createElement('div');d.className='opt';d.innerHTML='\\('+op+'\\)';d.dataset.v=op;d.addEventListener('click',()=>choose(d));box.appendChild(d);});
+    typeset(playEl);
+    startTimer();
+  }
+  function startTimer(){left=PER;$('qTimer').textContent=fmtTime(left);$('timerFill').style.width='100%';$('timerFill').style.background='var(--sky)';clearInterval(timer);
+    timer=setInterval(()=>{left--;$('qTimer').textContent=fmtTime(left);$('timerFill').style.width=(Math.max(left,0)/PER*100)+'%';
+      if(left<=0){clearInterval(timer);timeUp();}},1000);}
+  function stopTimer(){clearInterval(timer);}
+  const nn=s=>s.replace(/\s+/g,'');
+  function choose(el){
+    if(locked)return;locked=true;stopTimer();
+    const val=el.dataset.v, correct=nn(val)===nn(cur.correct);
+    document.querySelectorAll('.opt').forEach(o=>{
+      if(nn(o.dataset.v)===nn(cur.correct))o.classList.add('correct');
+      else if(o===el)o.classList.add('wrong');
+      else o.classList.add('dim');
+    });
+    if(correct){ok++;streak++;const bonus=Math.max(left,0)*2+streak*10;score+=100+bonus;
+      $('fb').textContent='正解！ +'+(100+bonus)+'（連続'+streak+'）';$('fb').className='fb ok';burst();}
+    else{streak=0;$('fb').textContent='おしい！ 正しい解き方を確認しよう';$('fb').className='fb ng';}
+    $('sScore').textContent=score;$('sStreak').textContent=streak;
+    $('sol').classList.add('show');
+    $('nextBtn').style.display='block';$('nextBtn').textContent=(idx+1>=TOTAL)?'結果を見る →':'次の問題 →';
+    idx++;
+  }
+  function timeUp(){
+    // 時間切れでもロックしない：解答チャンスは残す（時間ボーナスだけ無し）
+    if(locked)return;
+    timedOut=true;
+    $('qTimer').textContent='0:00';
+    $('timerFill').style.width='0%';$('timerFill').style.background='#ff8080';
+    $('fb').textContent='⏰ 時間切れ…でもOK！ 落ち着いて答えを選ぼう';$('fb').className='fb ng';
+  }
+
+  function finish(){
+    playEl.style.display='none';resEl.style.display='block';
+    $('rScore').textContent=score;
+    const rate=ok/TOTAL;
+    let rank,msg;
+    if(rate>=0.9){rank='🏆 Sランク';msg='完璧！ 教達検の1次関数はバッチリ。';rain();}
+    else if(rate>=0.7){rank='🥇 Aランク';msg='合格ライン超え！ この調子。';rain();}
+    else if(rate>=0.5){rank='🥈 Bランク';msg='あと一歩。過去問タイプで解き方を見直そう。';}
+    else{rank='🔰 Cランク';msg='まずは②学習・③タイプで型を確認しよう。';}
+    $('rRank').textContent=rank;$('rMsg').textContent=msg;
+    $('rDetail').textContent=TOTAL+'問中 '+ok+'問正解 ／ 正答率 '+Math.round(rate*100)+'%';
+  }
+  /* 演出 */
+  function burst(){for(let i=0;i<10;i++){const s=document.createElement('div');s.className='confetti';s.style.left=(40+Math.random()*20)+'%';s.style.top='40%';s.style.background=['#2fbdea','#8dc63f','#f7d000'][i%3];s.style.transition='all .8s ease-out';document.body.appendChild(s);requestAnimationFrame(()=>{s.style.transform='translate('+(Math.random()*160-80)+'px,'+(120+Math.random()*80)+'px) rotate('+Math.random()*360+'deg)';s.style.opacity='0';});setTimeout(()=>s.remove(),900);}}
+  function rain(){for(let i=0;i<40;i++){const s=document.createElement('div');s.className='confetti';s.style.left=Math.random()*100+'%';s.style.background=['#2fbdea','#8dc63f','#f7d000','#e0447a'][i%4];s.style.transition='all '+(1.4+Math.random())+'s ease-in';document.body.appendChild(s);requestAnimationFrame(()=>{s.style.transform='translateY('+(window.innerHeight+40)+'px) rotate('+Math.random()*720+'deg)';s.style.opacity='0.2';});setTimeout(()=>s.remove(),2600);}}
+})();
+</script>
+</body>
+</html>
